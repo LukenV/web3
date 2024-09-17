@@ -1,7 +1,7 @@
 import Header from "components/Header/Header.jsx";
 import Content from "components/Content/Content.jsx";
 import Total from "components/Total/Total.jsx";
-
+import "./App.css";
 function App() {
     const course = 'Half Stack application development';
     const part1 = 'Fundamentals of React';
