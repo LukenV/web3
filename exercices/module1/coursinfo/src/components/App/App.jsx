@@ -12,7 +12,7 @@ function App() {
     const exercises3 = 14;
 
     return (
-        <div>
+        <div className="container">
             <Header title={course}/>
             <Content partOne={part1} partTwo={part2} partThree={part3}
                      countOne={exercises1} countTwo={exercises2} countThree={exercises3}/>

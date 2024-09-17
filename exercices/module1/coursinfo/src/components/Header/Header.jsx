@@ -6,9 +6,7 @@ const Header = (props) => {
             <h1>
                 {props.title}
             </h1>
-            <div className="imageContainer">
-                <img src={logoVinciPath} alt="Logo Vinci"/>
-            </div>
+            <img src={logoVinciPath} alt="Logo Vinci"/>
         </>
     );
 }
