@@ -1,4 +1,4 @@
-import Part from "../Part/Part.jsx";
+import Part from "components/Part/Part.jsx";
 
 const Content = (props) => {
     return (

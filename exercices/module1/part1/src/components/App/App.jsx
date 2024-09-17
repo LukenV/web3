@@ -1,20 +1,5 @@
-const Hello = (props) => {
-    return (
-        <>
-            <p>
-            Hello {props.name}, you are {props.age} years old
-            </p>
-        </>
-    )
-}
-
-const Footer = () => {
-    return (
-        <div>
-            greeting app created by <a href="https://github.com/LukenV">LukenV</a>
-        </div>
-    )
-}
+import Hello from "components/Hello/Hello.jsx";
+import Footer from "components/Footer/Footer.jsx";
 
 const App = () => {
     const friends = [
