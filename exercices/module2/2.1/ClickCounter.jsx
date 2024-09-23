@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 const ClickCounter = ({title, message}) => {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(JSON.parse(localStorage.getItem("count")))
     const [mouseEntered, setMouseEntered] = useState(false);
 
     const clickMeMessage = "Please click on me now !";
@@ -15,7 +15,8 @@ const ClickCounter = ({title, message}) => {
     }
 
     const handleClick = () => {
-        setCount((count) => count + 1)
+        setCount((count) => count + 1);
+        localStorage.setItem("count", JSON.stringify(count+1));
     }
 
     return (
