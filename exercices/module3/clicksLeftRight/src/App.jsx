@@ -32,12 +32,14 @@ function App() {
     const [total, setTotal] = useState(0);
 
     const handleLeftClick = () => {
+        console.log("left!");
         setAllClicks(allClicks.concat('L'));
         const updatedLeft = left+1;
         setLeft(updatedLeft);
         setTotal(updatedLeft+right);
     }
     const handleRightClick = () => {
+        console.log("right!");
         setAllClicks(allClicks.concat('R'));
         const updatedRight = right+1;
         setRight(updatedRight);
@@ -46,8 +48,8 @@ function App() {
     return (
         <div>
             {left}
-            <Button onClick={handleLeftClick} text="Left"/>
-            <Button onClick={handleRightClick} text="Right"/>
+            <Button handleClick={handleLeftClick} text="Left"/>
+            <Button handleClick={handleRightClick} text="Right"/>
             {right}
             <History allClicks={allClicks}/>
             <p>Total : {total}</p>
