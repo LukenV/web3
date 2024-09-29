@@ -1,0 +1,31 @@
+body {
+  margin: 5vw;
+}
+
+button {
+  font-weight: bold;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: rgba(44, 43, 43, 0.7) 0 0 3px;
+  border: none;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition-duration: 0.35s;
+}
+
+button:hover {
+  transition-duration: 0.25s;
+  cursor: pointer;
+  box-shadow: rgba(44, 43, 43, 0.7) 0 0 5px;
+  border-radius: 10px;
+}
+
+table, tr, td {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+td {
+  padding: 5px;
+  text-align: center;
+}
