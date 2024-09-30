@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 
+const Loading = () => {
+    return <p>Loading...</p>
+}
+
 const Button = ({handler, text}) => {
     return (
         <button onClick={handler}>
@@ -46,6 +50,13 @@ const App = () => {
     const [total, setTotal] = useState(0);
     const [average, setAverage] = useState(0);
     const [positivePercentage, setPositivePercentage] = useState(0);
+    const [loading, setLoading] = useState(true);
+
+    const time = 3000;
+    const timeOutClock = setTimeout(() => {
+        setLoading(false);
+        clearTimeout(timeOutClock);
+    }, time);
 
     const handlerGood = () => {
         const updatedGood = good + 1;
@@ -67,6 +78,10 @@ const App = () => {
         const updatedTotal = total + 1;
         setTotal(updatedTotal);
         setAverage(average - 1);
+    }
+
+    if (loading) {
+        return <Loading/>;
     }
 
     return (
