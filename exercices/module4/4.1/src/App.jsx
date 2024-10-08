@@ -4,6 +4,7 @@ import Persons from "./components/Persons.jsx";
 import PersonForm from "./components/PersonForm.jsx";
 import Filter from "./components/Filter.jsx";
 import axios from "axios";
+import personsService from "./services/persons";
 
 const App = () => {
     const [persons, setPersons] = useState([]);
@@ -12,10 +13,10 @@ const App = () => {
     const [filterName, setFilterName] = useState('');
 
     useEffect(() => {
-        axios
-            .get("http://localhost:3001/persons")
-            .then(result => {
-                setPersons(result.data);
+        personsService
+            .getAll()
+            .then(initialPersons => {
+                setPersons(initialPersons);
             });
     }, []);
 
@@ -24,11 +25,17 @@ const App = () => {
         if (persons.find(person => person.name === newName)) {
             return alert(`${newName} is already added the list`);
         }
-        setPersons(persons.concat({
+        const newPerson = {
             name: newName,
             number: newNumber,
             id: persons.length + 1
-        }));
+        }
+        personsService
+            .create(newPerson)
+            .then(createdPerson => {
+                setPersons(persons.concat(createdPerson));
+            });
+
         setNewName('');
         setNewNumber('');
     }
