@@ -5,16 +5,16 @@ const Context = createContext(null);
 const ContextProvider = ({children}) => {
 
     const lightThemeStyle = {
-        backgroundColor: "white",
-        primaryTextColor: "black",
-        secondaryTextColor: "grey",
+        backgroundColor: "#fafaff",
+        primaryTextColor: "#1C1C1C",
+        secondaryTextColor: "#454955",
         linkColor: "purple"
     };
 
     const darkThemeStyle = {
-        backgroundColor: "black",
-        primaryTextColor: "white",
-        secondaryTextColor: "grey",
+        backgroundColor: "#1C1C1C",
+        primaryTextColor: "#fafaff",
+        secondaryTextColor: "#daddd8",
         linkColor: "blue"
     };
 
