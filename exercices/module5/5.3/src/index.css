@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, p, button {
+    transition-duration: 350ms;
+}
+
+.app {
+    transition-property: background-color;
+    transition-duration: 650ms;
+    transition-timing-function: ease;
+}

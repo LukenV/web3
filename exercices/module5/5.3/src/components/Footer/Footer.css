@@ -1,0 +1,14 @@
+footer {
+    position: absolute;
+    bottom: 10px;
+}
+
+button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px 3px;
+}
+
+button:hover {
+    cursor: pointer;
+}
