@@ -1,0 +1,24 @@
+@baseUrl=http://localhost:3001
+
+### GET ALL NOTES
+GET {{baseUrl}}/api/notes
+
+### CREATE ONE NOTE
+POST {{baseUrl}}/api/notes
+Content-Type: application/json
+
+{
+  "content": "WebStorm's REST Client is good in testing backend",
+  "important": true
+}
+
+### CREATE ONE NOTE WITHOUT IMPORTANT
+POST {{baseUrl}}/api/notes
+Content-Type: application/json
+
+{
+  "content": "This note isn't important"
+}
+
+### DELETE ONE NOTE
+DELETE {{baseUrl}}/api/notes/1
