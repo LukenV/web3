@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
+require('dotenv').config();
+const Note = require('./models/note');
 
 app.use(express.json());
 
@@ -19,47 +21,26 @@ const requestLogger = (req, res, next) => {
 
 app.use(requestLogger);
 
-let notes = [
-    {
-        id: "1",
-        content: "HTML is easy",
-        important: true
-    },
-    {
-        id: "2",
-        content: "Browser can execute only JavaScript",
-        important: false
-    },
-    {
-        id: "3",
-        content: "GET and POST are the most important methods of HTTP protocol",
-        important: true
-    }
-];
-
 app.get('/', (req, res) => {
    res.send('<h1>Hello World !</h1>')
 });
 
 app.get('/api/notes', (req, res) => {
-    res.json(notes);
+    Note.find({}).then(notes => {
+        res.json(notes);
+    })
 });
 
-app.get('/api/notes/:id', (req, res) => {
-    const id = req.params.id;
-    const note = notes.find(node => node.id === id);
-    if (!note) {
-        return res.status(404).end();
-    }
-    res.json(note);
+app.get('/api/notes/:id', (req, res, next) => {
+    const {id} = req.params;
+    Note.findById(id).then(note => {
+        if (note) {
+            res.json(note);
+        } else {
+            res.status(404).end();
+        }
+    }).catch(err => next(err));
 });
-
-const generateId = () => {
-    const maxId = notes.length > 0
-        ? Math.max(...notes.map(n => Number(n.id)))
-        : 0;
-    return String(maxId + 1);
-}
 
 app.post('/api/notes', (req, res) => {
 
@@ -71,20 +52,35 @@ app.post('/api/notes', (req, res) => {
         });
     }
 
-    const note = {
+    const note = new Note({
         content: body.content,
-        important: Boolean(body.important) || false,
-        id : generateId()
-    }
+        important: body.important || false,
+    });
 
-    notes = notes.concat(note);
-    res.json(note);
+    note.save().then(savedNote => {
+        res.json(savedNote);
+    });
 });
 
-app.delete('/api/notes/:id', (req, res) => {
-    const id = req.params.id;
-    notes = notes.filter(node => node.id !== id);
-    res.status(204).end();
+app.delete('/api/notes/:id', (req, res, next) => {
+    const {id} = req.params;
+    Note.findByIdAndDelete(id).then(result => {
+        res.status(204).end();
+    }).catch(err => next(err));
+});
+
+app.put('/api/notes/:id', (req, res, next) => {
+    const {id} = req.params;
+    const {body} = req;
+
+    const note = {
+        content: body.content,
+        important: body.important
+    }
+
+    Note.findByIdAndUpdate(id, note, {new: true}).then(updatedNote => {
+        res.json(updatedNote);
+    }).catch(err => next(err));
 });
 
 const unknownEndpoint = (req, res) => {
@@ -95,7 +91,19 @@ const unknownEndpoint = (req, res) => {
 
 app.use(unknownEndpoint);
 
-const PORT = 3001;
+const errorHandler = (err, req, res, next) => {
+    console.error(err.message);
+
+    if (err.name === 'CastError') {
+        return res.status(400).send({error: 'Malformatted id'});
+    }
+
+    next(err);
+}
+
+app.use(errorHandler);
+
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

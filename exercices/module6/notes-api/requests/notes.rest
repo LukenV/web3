@@ -3,6 +3,9 @@
 ### GET ALL NOTES
 GET {{baseUrl}}/api/notes
 
+### GET ONE NOTE
+GET {{baseUrl}}/api/notes/67179f33785efb93af75aa4b
+
 ### CREATE ONE NOTE
 POST {{baseUrl}}/api/notes
 Content-Type: application/json
@@ -20,5 +23,14 @@ Content-Type: application/json
   "content": "This note isn't important"
 }
 
+### UPDATE ONE NOTE
+PUT {{baseUrl}}/api/notes/6717d5dc8170a8e22f2d6509
+Content-Type: application/json
+
+{
+  "content": "Test",
+  "important": false
+}
+
 ### DELETE ONE NOTE
-DELETE {{baseUrl}}/api/notes/1
+DELETE {{baseUrl}}/api/notes/67179f33785efb93af75aa4b
