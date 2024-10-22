@@ -1,0 +1,50 @@
+@baseUrl=http://localhost:3001
+
+### GET ALL NOTES
+GET {{baseUrl}}/api/persons
+
+### GET ONE NOTE
+GET {{baseUrl}}/api/persons/1
+
+### GET ONE NOTE
+GET {{baseUrl}}/api/persons/5
+
+### CREATE ONE NOTE
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+  "name": "Moi",
+  "number": "123-456-78910"
+}
+
+### CREATE ONE NOTE
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+  "name": "Moi"
+}
+
+### CREATE ONE NOTE
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+  "number": "123-456-78910"
+}
+
+### CREATE ONE NOTE
+POST {{baseUrl}}/api/persons
+Content-Type: application/json
+
+{
+  "name": "Moi",
+  "number": "test conflit"
+}
+
+### DELETE ONE NOTE
+DELETE {{baseUrl}}/api/persons/1
+
+### GET INFO
+GET {{baseUrl}}/info
