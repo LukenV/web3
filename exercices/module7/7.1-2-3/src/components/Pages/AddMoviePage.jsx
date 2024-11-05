@@ -7,9 +7,13 @@ const AddMoviePage = () => {
 
     const onMovieAdded = (newMovie) => {
         console.log("Movie to add:", newMovie);
-        setMovies([...movies, newMovie]);
+        setMovies([...movies, {...newMovie, id: getNextMovieId()}]);
         navigate("/movieslist");
     };
+
+    const getNextMovieId = () => {
+        return movies[movies.length-1].id + 1;
+    }
 
     return (
         <div>
