@@ -10,6 +10,7 @@ const Header = ({urlLogo, children}) => {
             <Link className="link" to="/">Home</Link>
             <Link className="link" to="/cinema">Cinema</Link>
             <Link className="link" to="/movieslist">Movies list</Link>
+            <Link className="link" to="/addmovie">Add movie</Link>
         </nav>
     </header>
   );
